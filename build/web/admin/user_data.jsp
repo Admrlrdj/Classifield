@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        <%@include file="template/footer.jsp" %>
+        <%@include file="template/footer.jsp" %>d
 
         <script>
             $(document).ready(function () {

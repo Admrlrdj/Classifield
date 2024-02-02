@@ -44,7 +44,7 @@ public class UserDao {
                 k.setPassword(rs.getString("password"));
                 k.setNoTlp(rs.getString("no_tlp"));
                 k.setRole(rs.getInt("role"));
-                
+
                 listUser.add(k);
             }
         } catch (SQLException e) {
@@ -52,6 +52,25 @@ public class UserDao {
         }
 
         return listUser;
+    }
+
+    public void simpanData(User k, String page) {
+        String sqlSimpan = null;
+        if (page.equals("tambah")) {
+            sqlSimpan = "INSERT INTO user (nama_instansi, email, username, password, no_tlp, role, logged_in) VALUES (?,?,?,?,?,2,0)";
+        }
+        try {
+            ps = conDB.prepareStatement(sqlSimpan);
+            ps.setString(1, k.getNamaInstansi());
+            ps.setString(2, k.getEmail());
+            ps.setString(3, k.getUsername());
+            ps.setString(4, k.getPassword());
+            ps.setString(5, k.getNoTlp());
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Simpan Data Error" + e.getMessage());
+        }
     }
 
     public static void main(String[] args) {
